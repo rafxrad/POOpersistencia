@@ -41,8 +41,7 @@ public class ClientePessoaFisica implements ICliente, Serializable{
 				+ telefones + ", contas=" + contas + "]";
 	}
 
-
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -53,22 +52,21 @@ public class ClientePessoaFisica implements ICliente, Serializable{
 
 	@Override
 	public boolean equals(Object obj) {
-		
-		ClientePessoaFisica other = (ClientePessoaFisica) obj;
-		if (this.cpf == null) 
-		{
-			if (other.cpf != null)
-			{
-				return false;
-			}
-		} else if (!this.cpf.equals(other.cpf))
-		{
+		if (this == obj)
+			return true;
+		if (obj == null)
 			return false;
-		}
+		if (getClass() != obj.getClass())
+			return false;
+		ClientePessoaFisica other = (ClientePessoaFisica) obj;
+		if (cpf == null) {
+			if (other.cpf != null)
+				return false;
+		} else if (!cpf.equals(other.cpf))
+			return false;
 		return true;
 	}
-	
-	
+
 	protected void adicionarContaCliente(IConta contaCliente)
 	{
 		this.contas.add(contaCliente);
@@ -107,6 +105,12 @@ public class ClientePessoaFisica implements ICliente, Serializable{
 		{
 			System.out.println("Cliente nao tem o referido telefone");
 		}
+	}
+
+	@Override
+	public void cadastrarConta(IConta conta) {
+		// TODO Auto-generated method stub
+		contas.add(conta);
 	}
 	
 }

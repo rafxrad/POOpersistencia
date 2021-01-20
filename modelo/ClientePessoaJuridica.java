@@ -51,24 +51,24 @@ public class ClientePessoaJuridica implements ICliente, Serializable {
 		return result;
 	}
 
+
 	@Override
 	public boolean equals(Object obj) {
-		
-		ClientePessoaJuridica other = (ClientePessoaJuridica) obj;
-		if (this.cnpj == null) 
-		{
-			if (other.cnpj != null)
-			{
-				return false;
-			}
-		} else if (!this.cnpj.equals(other.cnpj))
-		{
+		if (this == obj)
+			return true;
+		if (obj == null)
 			return false;
-		}
+		if (getClass() != obj.getClass())
+			return false;
+		ClientePessoaJuridica other = (ClientePessoaJuridica) obj;
+		if (cnpj == null) {
+			if (other.cnpj != null)
+				return false;
+		} else if (!cnpj.equals(other.cnpj))
+			return false;
 		return true;
 	}
-	
-	
+
 	protected void adicionarContaCliente(IConta contaCliente)
 	{
 		this.contas.add(contaCliente);
@@ -107,6 +107,12 @@ public class ClientePessoaJuridica implements ICliente, Serializable {
 		{
 			System.out.println("Cliente nao tem o referido telefone");
 		}
+	}
+
+	@Override
+	public void cadastrarConta(IConta conta) {
+		// TODO Auto-generated method stub
+		contas.add(conta);
 	}
 	
 }

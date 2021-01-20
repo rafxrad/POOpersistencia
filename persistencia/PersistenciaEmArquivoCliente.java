@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import banco.excecao.ClienteNaoEncontradoException;
 import banco.modelo.ClientePessoaFisica;
 import banco.modelo.ClientePessoaJuridica;
 import banco.modelo.ICliente;
@@ -26,16 +27,15 @@ public class PersistenciaEmArquivoCliente implements IPersistenciaCliente{
 	@Override
 	public void cadastrarCliente(ICliente obj) {
 		// TODO Auto-generated method stub
-		if(!clientesCadastrados.contains(obj))
-		{
+		//Trecho de código está impedindo de atualizar um elemento já existente 
+
 			clientesCadastrados.add(obj);
 			salvarEmArquivo();
-		}
 		
 	}
 
 	@Override
-	public ICliente localizarClientePorCPF(String cpf) {
+	public ICliente localizarClientePorCPF(String cpf) throws ClienteNaoEncontradoException{
 		// TODO Auto-generated method stub
 		ICliente cliente = new ClientePessoaFisica(cpf);
 		
@@ -44,6 +44,8 @@ public class PersistenciaEmArquivoCliente implements IPersistenciaCliente{
 			int index = clientesCadastrados.indexOf(cliente);
 			cliente = clientesCadastrados.get(index);
 		}
+		else
+			throw new ClienteNaoEncontradoException("Cliente não encontrado!");
 		return cliente;
 	}
 
@@ -55,7 +57,8 @@ public class PersistenciaEmArquivoCliente implements IPersistenciaCliente{
 		if(clientesCadastrados.contains(cliente))
 		{
 			int index = clientesCadastrados.indexOf(cliente);
-			cliente = clientesCadastrados.get(index);
+			cliente = null;
+			cliente =clientesCadastrados.get(index);
 		}
 		return cliente;
 	}
@@ -101,6 +104,7 @@ public class PersistenciaEmArquivoCliente implements IPersistenciaCliente{
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			Object obj = ois.readObject();
 			clientesCadastrados = (ArrayList<ICliente>)obj;
+			ois.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -113,5 +117,12 @@ public class PersistenciaEmArquivoCliente implements IPersistenciaCliente{
 		}
 		
 	}
+	
+	//de duas uma: iremos precisar alterar o equals ou declaramos um método privado para comprar os atributos dos objetos 
+	
+	//vou ver isso depois, ok?
+	// certo. joia. até mais!
+	// valeu pela atenção professor
+	// blz
 
 }
