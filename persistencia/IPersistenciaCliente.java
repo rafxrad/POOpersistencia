@@ -1,7 +1,7 @@
 package banco.persistencia;
 
 
-import banco.excecao.ClienteNaoEncontradoException;
+import banco.excecao.ClienteJaCadastradoException;
 import banco.modelo.ICliente;
 
 public interface IPersistenciaCliente {
@@ -9,7 +9,7 @@ public interface IPersistenciaCliente {
 	
 	public void cadastrarCliente(ICliente obj);
 	
-	public ICliente localizarClientePorCPF(String cpf) throws ClienteNaoEncontradoException;
+	public ICliente localizarClientePorCPF(String cpf);
 	
 	public ICliente localizarClientePorCNPJ(String cnpj);
 	

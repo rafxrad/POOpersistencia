@@ -21,11 +21,11 @@ public class ClientePessoaFisica implements ICliente, Serializable{
 	
 	private List<IConta> contas = new ArrayList<IConta>();
 	
-	public ClientePessoaFisica(String cpf, String nome, String dataNascimento) {
-		super();
+	public ClientePessoaFisica(String cpf, String nome, String dataNascimento, String email) {
 		this.cpf = cpf;
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
+		this.email = email;
 	}
 	
 	public ClientePessoaFisica(String cpf)
@@ -42,6 +42,7 @@ public class ClientePessoaFisica implements ICliente, Serializable{
 	}
 
 	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -67,7 +68,7 @@ public class ClientePessoaFisica implements ICliente, Serializable{
 		return true;
 	}
 
-	protected void adicionarContaCliente(IConta contaCliente)
+	public void adicionarContaCliente(IConta contaCliente)
 	{
 		this.contas.add(contaCliente);
 	}
@@ -107,10 +108,6 @@ public class ClientePessoaFisica implements ICliente, Serializable{
 		}
 	}
 
-	@Override
-	public void cadastrarConta(IConta conta) {
-		// TODO Auto-generated method stub
-		contas.add(conta);
-	}
+
 	
 }

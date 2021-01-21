@@ -1,6 +1,6 @@
 package banco.excecao;
 
-public class ClienteNaoEncontradoException extends Exception{
+public class ClienteJaCadastradoException extends Exception{
 
 	
 	/**
@@ -8,7 +8,7 @@ public class ClienteNaoEncontradoException extends Exception{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public ClienteNaoEncontradoException(String msg)
+	public ClienteJaCadastradoException(String msg)
 	{
 		super(msg);
 	}

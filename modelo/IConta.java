@@ -1,6 +1,8 @@
 
 package banco.modelo;
 
+import banco.excecao.SaldoIndisponivelException;
+
 public interface IConta {
 
 	float CUSTO_SACAR_CONTA_CORRENTE = 0.01f;
@@ -11,7 +13,7 @@ public interface IConta {
 	
 	public float saldo = 0f;
 	
-	public void sacar(float valorSacado);
+	public void sacar(float valorSacado) throws SaldoIndisponivelException;
 	
 	public void depositar(float valorDepositado);
 	

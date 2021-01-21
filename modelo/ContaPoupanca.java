@@ -1,5 +1,6 @@
 package banco.modelo;
 
+import banco.excecao.SaldoIndisponivelException;
 
 public class ContaPoupanca implements IConta{
 
@@ -21,11 +22,15 @@ public class ContaPoupanca implements IConta{
 	}
 
 	@Override
-	public void sacar(float valorSacado) {
+	public void sacar(float valorSacado) throws SaldoIndisponivelException {
 		// TODO Auto-generated method stub
 		if(valorSacado<=this.saldo && this.status)
 		{
 			this.saldo -= (valorSacado + (valorSacado*CUSTO_SACAR_CONTA_POUPANCA));
+		}
+		else if((valorSacado + (valorSacado*CUSTO_SACAR_CONTA_POUPANCA) > saldo))
+		{
+			throw new SaldoIndisponivelException("Saldo Insuficiente");
 		}
 	}
 

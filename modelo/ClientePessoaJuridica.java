@@ -13,34 +13,38 @@ public class ClientePessoaJuridica implements ICliente, Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	String cnpj;
-	String nome;
-	String dataNascimento;
+	String razaoSocial;
+	String nomeFantasia;
 	String email;
+	
 	
 	HashSet<String> telefones = new HashSet<String>();
 	
 	private List<IConta> contas = new ArrayList<IConta>();
 	
-	public ClientePessoaJuridica(String cnpj, String nome, String dataNascimento) {
+	public ClientePessoaJuridica(String cnpj) {
+		this.cnpj = cnpj;
+		
+	}
+	
+
+	public ClientePessoaJuridica(String cnpj, String razaoSocial, String nomeFantasia, String email){
+		
 		super();
 		this.cnpj = cnpj;
-		this.nome = nome;
-		this.dataNascimento = dataNascimento;
-	}
+		this.razaoSocial = razaoSocial;
+		this.nomeFantasia = nomeFantasia;
+		this.email = email;
 	
-	public ClientePessoaJuridica(String cnpj)
-	{
-		this.cnpj = cnpj;
 	}
 
-	
+
 
 	@Override
 	public String toString() {
-		return "Cliente [cnpj=" + cnpj + ", nome=" + nome + ", dataNascimento=" + dataNascimento + ", telefones="
-				+ telefones + ", contas=" + contas + "]";
+		return "ClientePessoaJuridica [cnpj=" + cnpj + ", razaoSocial=" + razaoSocial + ", nomeFantasia=" + nomeFantasia
+				+ ", email=" + email + ", telefones=" + telefones + ", contas=" + contas + "]";
 	}
-
 
 
 	@Override
@@ -69,12 +73,15 @@ public class ClientePessoaJuridica implements ICliente, Serializable {
 		return true;
 	}
 
-	protected void adicionarContaCliente(IConta contaCliente)
+
+	public void adicionarContaCliente(IConta contaCliente)
 	{
 		this.contas.add(contaCliente);
+		System.out.println("Conta adicionada com sucesso!");
 	}
 	
 	public boolean contemContaCliente(IConta conta)
+	
 	{
 		return this.contas.contains(conta);
 	}
@@ -109,10 +116,8 @@ public class ClientePessoaJuridica implements ICliente, Serializable {
 		}
 	}
 
-	@Override
-	public void cadastrarConta(IConta conta) {
-		// TODO Auto-generated method stub
-		contas.add(conta);
-	}
+
 	
 }
+	
+
